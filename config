@@ -52,7 +52,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+U kill
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun 
+bindsym $mod+d exec --no-startup-id rofi -show drun
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -108,40 +108,41 @@ bindsym $mod+q focus parent
 
 
 
-#window colors 
+#window colors
 set $bgcolor    #00897b
 set $ibgcolor   #B2A0DD
 set $textcolor  #ffffff
 set $ubgcolor   #ff0000
-#                         border         background             text            indicator  
-client.focused            $bgcolor       $bgcolor               $textcolor      $bgcolor 
-client.unfocused          $ibgcolor      $ibgcolor              $textcolor      $ibgcolor 
-client.urgent             $ubgcolor      $ubgcolor              $textcolor      $ubgcolor 
- 
+#                         border         background             text            indicator
+client.focused            $bgcolor       $bgcolor               $textcolor      $bgcolor
+client.unfocused          $ibgcolor      $ibgcolor              $textcolor      $ibgcolor
+client.urgent             $ubgcolor      $ubgcolor              $textcolor      $ubgcolor
+
 
 
 
 # focus the child container
 #bindsym $mod+d focus child
-set $mainMonitor HDMI-1 
-set $rightMonitor eDP-1 
+set $mainMonitor HDMI-1
+set $rightMonitor eDP-1
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
+set $ws1 "1:ssh"
+set $ws2 "2:ssh"
 set $ws3 "3:obsidian"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6:launchers"
 set $ws7 "7:firefox"
-set $ws8 "8:"
+set $ws8 "8:"
 set $ws9 "9:"
 set $ws10 "10:Firefox2nd"
 
-
-workspace $ws6 output $rightMonitor 
-workspace $ws7 output $mainMonitor 
+workspace $ws1 output $mainMonitor
+workspace $ws2 output $rightMonitor
+workspace $ws6 output $rightMonitor
+workspace $ws7 output $mainMonitor
 workspace $ws8 output $mainMonitor
 workspace $ws9 output $rightMonitor
 workspace $ws10 output $rightMonitor
@@ -151,8 +152,8 @@ workspace $ws10 output $rightMonitor
 assign [class="obsidian"] $ws3
 # for_window [class="obsidian"] focus
 
-## launch firefox before so that they have the time to open 
-exec --no-startup-id i3-msg 'workspace 7:Firefox; exec firefox; workspace 6:launchers;'
+## launch firefox before so that they have the time to open
+exec --no-startup-id i3-msg 'workspace 7:firefox; exec firefox; workspace 6:launchers;'
 exec --no-startup-id i3-msg 'workspace 10:Firefox2nd; exec firefox; workspace 6:launchers;'
 # switch to workspace
 bindsym $mod+ampersand workspace number $ws1
@@ -217,27 +218,28 @@ bindsym $mod+r mode "resize"
 
 
 # exec --no-startup-id i3-msg 'workspace 7:Firefox; exec firefox; workspace 1'
-exec --no-startup-id i3-msg 'workspace 1; exec gnome-terminal;'
+exec --no-startup-id i3-msg 'workspace 1:ssh; exec gnome-terminal;'
+exec --no-startup-id i3-msg 'workspace 2:ssh; exec gnome-terminal;'
 exec --no-startup-id ~/linux/obsidian.sh
-exec --no-startup-id i3-msg 'workspace 9:Term; exec gnome-terminal;'
-exec --no-startup-id i3-msg 'workspace 8:Code; exec gnome-terminal;'
+exec --no-startup-id i3-msg 'workspace 9:; exec gnome-terminal;'
+exec --no-startup-id i3-msg 'workspace 8:; exec gnome-terminal;'
 exec --no-startup-id i3-msg 'workspace 6:launchers; exec gnome-terminal;'
 
 # assign [class="firefox"] $ws10
 exec_always ~/.config/polybar/launch.sh
 exec_always ~/linux/start.sh
 exec_always ~/linux/typing.sh
-# exec firefox 
+# exec firefox
  # exec Gnome-terminal
 exec_always  xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal
 
-# smart_gaps on 
-gaps inner 10 
+# smart_gaps on
+gaps inner 10
 
-gaps outer  10 
+gaps outer  10
 
-# window compositor 
-# exec_always picom -f 
+# window compositor
+# exec_always picom -f
 
 # wallpaper
 exec_always feh --bg-fill ~/Downloads/jammy-jellyfish-wallpaper.jpg
@@ -245,8 +247,11 @@ exec_always feh --bg-fill ~/Downloads/jammy-jellyfish-wallpaper.jpg
 
 bindsym $mod+n exec ~/lock.sh
 bindsym $mod+t exec ~/linux/flame.sh
-# bindsym $mod+n exec i3lock 
+bindsym $mod+F2 exec ~/linux/mvbacktty.sh
 
-exec_always compton 
+bindsym $mod+F4 exec ~/linux/mvtty.sh
+# bindsym $mod+n exec i3lock
+
+exec_always compton
 
 
