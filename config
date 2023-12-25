@@ -131,21 +131,26 @@ set $rightMonitor eDP-1
 set $ws1 "1:ssh"
 set $ws2 "2:ssh"
 set $ws3 "3:obsidian"
-set $ws4 "4"
+set $ws4 "4:"
 set $ws5 "5"
 set $ws6 "6:launchers"
 set $ws7 "7:firefox"
 set $ws8 "8:"
 set $ws9 "9:"
 set $ws10 "10:Firefox2nd"
+set $ws11 "11:Mattermost"
 
 workspace $ws1 output $mainMonitor
 workspace $ws2 output $rightMonitor
+workspace $ws3 output $rightMonitor
 workspace $ws6 output $rightMonitor
 workspace $ws7 output $mainMonitor
+workspace $ws4 output $mainMonitor
 workspace $ws8 output $mainMonitor
 workspace $ws9 output $rightMonitor
 workspace $ws10 output $rightMonitor
+workspace $ws11 output $rightMonitor
+assign [class="Mattermost"] $ws11
 
 
 
@@ -166,6 +171,7 @@ bindsym $mod+egrave workspace number $ws7
 bindsym $mod+underscore workspace number $ws8
 bindsym $mod+period workspace number $ws9
 bindsym $mod+agrave workspace number $ws10
+bindsym $mod+twosuperior workspace number $ws11
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -221,6 +227,7 @@ bindsym $mod+r mode "resize"
 exec --no-startup-id i3-msg 'workspace 1:ssh; exec gnome-terminal;'
 exec --no-startup-id i3-msg 'workspace 2:ssh; exec gnome-terminal;'
 exec --no-startup-id ~/linux/obsidian.sh
+exec --no-startup-id mattermost-desktop
 exec --no-startup-id i3-msg 'workspace 9:; exec gnome-terminal;'
 exec --no-startup-id i3-msg 'workspace 8:; exec gnome-terminal;'
 exec --no-startup-id i3-msg 'workspace 6:launchers; exec gnome-terminal;'
