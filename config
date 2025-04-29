@@ -138,7 +138,7 @@ set $ws7 "7:firefox"
 set $ws8 "8:"
 set $ws9 "9:"
 set $ws10 "10:Firefox2nd"
-set $ws11 "11:Mattermost"
+set $ws11 "11:Slack"
 
 workspace $ws1 output $mainMonitor
 workspace $ws2 output $rightMonitor
@@ -150,7 +150,7 @@ workspace $ws8 output $mainMonitor
 workspace $ws9 output $rightMonitor
 workspace $ws10 output $rightMonitor
 workspace $ws11 output $rightMonitor
-assign [class="Mattermost"] $ws11
+assign [class="Slack"] $ws11
 
 
 
@@ -227,15 +227,13 @@ bindsym $mod+r mode "resize"
 exec --no-startup-id i3-msg 'workspace 1:ssh; exec gnome-terminal;'
 exec --no-startup-id i3-msg 'workspace 2:ssh; exec gnome-terminal;'
 exec --no-startup-id ~/linux/obsidian.sh
-exec --no-startup-id mattermost-desktop
+exec --no-startup-id slack
 exec --no-startup-id i3-msg 'workspace 9:; exec gnome-terminal;'
 exec --no-startup-id i3-msg 'workspace 8:; exec gnome-terminal;'
 exec --no-startup-id i3-msg 'workspace 6:launchers; exec gnome-terminal;'
 
 # assign [class="firefox"] $ws10
 exec_always ~/.config/polybar/launch.sh
-exec_always ~/linux/start.sh
-exec_always ~/linux/typing.sh
 # exec firefox
  # exec Gnome-terminal
 exec_always  xrandr --output eDP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal
@@ -249,7 +247,7 @@ gaps outer  10
 # exec_always picom -f
 
 # wallpaper
-exec_always feh --bg-fill ~/Downloads/jammy-jellyfish-wallpaper.jpg
+exec_always feh --bg-fill ~/linux/jellyfish.jpeg
 ## keybinding for i3lock
 
 bindsym $mod+n exec ~/lock.sh
@@ -259,6 +257,7 @@ bindsym $mod+F2 exec ~/linux/mvbacktty.sh
 bindsym $mod+F4 exec ~/linux/mvtty.sh
 # bindsym $mod+n exec i3lock
 
-exec_always compton
+exec_always ~/linux/start.sh
 
+exec_always compton
 
